@@ -6,7 +6,7 @@ FROM ubuntu:18.04
 
 ENV XPT=5900
 ENV XPW=123456
-ENV LANGUAGE=fr_FR.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
 RUN apt-get update && apt-get install -y locales
 ENV TZ=Europe/Berlin
