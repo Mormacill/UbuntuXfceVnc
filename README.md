@@ -23,6 +23,8 @@ The variable **LANGUAGE** declares the language locale for your country or the l
 
 `en_US.UTF-8`
 
+`fr_FR.UTF-8`
+
 
 ## Build the Container
 
