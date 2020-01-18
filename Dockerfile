@@ -2,18 +2,18 @@ FROM ubuntu:18.04
 
 # XPT: x11vnc port to use
 # XPW: x11vnc VNC password
+# LANGUAGE: set locales
 
 ENV XPT=5900
 ENV XPW=123456
-
+ENV LANGUAGE=fr_FR.UTF-8
 
 RUN apt-get update && apt-get install -y locales
 ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN locale-gen de_DE.UTF-8
-ENV LANG=de_DE.UTF-8
-ENV LANGUAGE=de_DE.UTF-8
-ENV LC_ALL=de_DE.UTF-8
+RUN locale-gen ${LANGUAGE}
+ENV LANG=${LANGUAGE}
+ENV LC_ALL=${LANGUAGE}
 ENV DISPLAY=:0
 
 RUN apt-get -y upgrade && apt-get -y install xubuntu-desktop xserver-xorg-video-dummy x11vnc nano
@@ -44,7 +44,8 @@ echo '  EndSubSection' >> xorg.conf && \
 echo 'EndSection' >> xorg.conf
 
 RUN cd /root/ && \
-echo 'export LANG=de_DE.UTF-8' > entrypoint.sh && \
+echo 'rm /tmp/.X0-lock' > entrypoint.sh && \
+echo 'export LANG=${LANGUAGE}' >> entrypoint.sh && \
 echo 'export DISPLAY=:0' >> entrypoint.sh && \
 echo 'X &' >> entrypoint.sh && \
 echo 'sleep 3' >> entrypoint.sh && \
