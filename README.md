@@ -13,7 +13,7 @@ The variable **XPT** declares the exposed port on which the vnc server shall run
 
 The variable **XPW** declares the password you would like to use for your vnc access. You are free to choose it.
 
-`ENV LANGUAGE=de_DE.UTF-8`
+`ENV LANGUAGE=en_US.UTF-8`
 
 The variable **LANGUAGE** declares the language locale for your country or the language you would like to use the Xfce-Desktop.
 
