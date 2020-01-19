@@ -19,12 +19,13 @@ The variable **LANGUAGE** declares the language locale for your country or the l
 
 **Tested with:**
 
-`de_DE.UTF-8`
-
 `en_US.UTF-8`
 
-`fr_FR.UTF-8`
+~~`de_DE.UTF-8`~~ 
 
+~~`fr_FR.UTF-8`~~
+
+(Since version updates of Ubuntu 18.04 somehow  other languages doesn´t work consistently anymore, just partial. In former versions it worked with full translation)
 
 ## Build the Container
 
