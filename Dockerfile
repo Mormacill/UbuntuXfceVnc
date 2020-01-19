@@ -17,7 +17,7 @@ ENV LC_ALL=${LANGUAGE}
 ENV DISPLAY=:0
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get -y upgrade && apt-get -y install xubuntu-desktop xserver-xorg-video-dummy x11vnc nano
+RUN apt-get -y upgrade && apt-get -y install xfce4 xserver-xorg-video-dummy x11vnc nano
 
 RUN cd /usr/share/X11/xorg.conf.d/ && \
 echo 'Section "Monitor"' > xorg.conf && \
