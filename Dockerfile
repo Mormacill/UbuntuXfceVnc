@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:bionic
 
 # XPT: x11vnc port to use
 # XPW: x11vnc VNC password
@@ -12,12 +12,10 @@ RUN apt-get update && apt-get install -y locales
 ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN locale-gen ${LANGUAGE}
-ENV LANG=${LANGUAGE}
-ENV LC_ALL=${LANGUAGE}
 ENV DISPLAY=:0
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get -y upgrade && apt-get -y install xfce4 xserver-xorg-video-dummy x11vnc nano
+RUN apt-get -y upgrade && apt-get -y install xfce4 xserver-xorg-video-dummy x11vnc nano software-properties-common
 
 RUN cd /usr/share/X11/xorg.conf.d/ && \
 echo 'Section "Monitor"' > xorg.conf && \
@@ -47,6 +45,9 @@ echo 'EndSection' >> xorg.conf
 RUN cd /root/ && \
 echo 'rm /tmp/.X0-lock' > entrypoint.sh && \
 echo 'export LANG=${LANGUAGE}' >> entrypoint.sh && \
+echo 'export LC_ALL=${LANGUAGE}' >> entrypoint.sh && \
+echo 'export LC_MESSAGES=${LANGUAGE}' >> entrypoint.sh && \
+echo 'export LANGUAGE=${LANGUAGE}' >> entrypoint.sh && \
 echo 'export DISPLAY=:0' >> entrypoint.sh && \
 echo 'X &' >> entrypoint.sh && \
 echo 'sleep 3' >> entrypoint.sh && \
@@ -57,8 +58,11 @@ echo 'sleep 10' >> entrypoint.sh && \
 echo 'x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /root/passwd.pass -rfbport ${XPT} -shared &' >> entrypoint.sh && \
 chmod +x entrypoint.sh
 
+RUN apt-get purge gnome-terminal orage && apt-get -y install gedit tilix firefox
 
 RUN x11vnc -storepasswd ${XPW} /root/passwd.pass
+
+ENV XPW=
 
 EXPOSE ${XPT}/tcp
 
