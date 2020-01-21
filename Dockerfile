@@ -54,7 +54,7 @@ echo 'sleep 10' >> entrypoint.sh && \
 echo 'x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /root/passwd.pass -rfbport ${XPT} -shared &' >> entrypoint.sh && \
 chmod +x entrypoint.sh
 
-RUN apt-get -y purge gnome-terminal xterm && apt-get -y install gedit tilix firefox && apt-get -y autoremove
+RUN apt-get -y purge gnome-terminal xterm && apt-get -y install gedit tilix firefox sudo wget && apt-get -y autoremove
 
 RUN x11vnc -storepasswd ${XPW} /root/passwd.pass
 
