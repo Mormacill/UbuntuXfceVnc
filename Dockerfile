@@ -68,6 +68,8 @@ echo '    . /etc/bash_completion' >> bash.bashrc && \
 echo '  fi' >> bash.bashrc && \
 echo 'fi' >> bash.bashrc
 
+RUN apt-get update
+
 RUN x11vnc -storepasswd ${XPW} /root/passwd.pass
 
 ENV XPW=
