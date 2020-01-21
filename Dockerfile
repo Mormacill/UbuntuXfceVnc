@@ -54,7 +54,19 @@ echo 'sleep 10' >> entrypoint.sh && \
 echo 'x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /root/passwd.pass -rfbport ${XPT} -shared &' >> entrypoint.sh && \
 chmod +x entrypoint.sh
 
-RUN apt-get -y purge gnome-terminal xterm && apt-get -y install gedit tilix firefox sudo wget && apt-get -y autoremove
+RUN apt-get -y purge gnome-terminal xterm && apt-get -y install gedit tilix firefox sudo wget bash-completion && apt-get -y autoremove
+
+RUN rm /etc/apt/apt.conf.d/docker-clean
+
+RUN cd /etc/ && \
+echo ''  >> bash.bashrc && \
+echo 'if ! shopt -oq posix; then' >> bash.bashrc && \
+echo '  if [ -f /usr/share/bash-completion/bash_completion ]; then' >> bash.bashrc && \
+echo '    . /usr/share/bash-completion/bash_completion' >> bash.bashrc && \
+echo '  elif [ -f /etc/bash_completion ]; then' >> bash.bashrc && \
+echo '    . /etc/bash_completion' >> bash.bashrc && \
+echo '  fi' >> bash.bashrc && \
+echo 'fi' >> bash.bashrc
 
 RUN x11vnc -storepasswd ${XPW} /root/passwd.pass
 
