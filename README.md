@@ -1,4 +1,4 @@
-# UbuntuXfceVnc-18.04
+# UbuntuXfceVnc
 A Dockerfile for a vnc running ubuntu container with xfce
 
 
