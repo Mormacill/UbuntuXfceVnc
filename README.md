@@ -31,7 +31,7 @@ The variable **LANGUAGE** declares the language locale for your country or the l
 
 `fr_FR.UTF-8`
 
-Since version updates of Ubuntu 18.04 somehow languages doesn´t work consistently anymore, just partial. In former versions it worked with full translation. It´s your choice to use the Desktop with full-english or partial translated.
+Since version updates of Ubuntu 18.04 somehow languages doesn´t work consistently anymore, just partial. In former versions it worked with full translation. It´s your choice to use the Desktop with full-english or partial translated. It is recommented to use default en_US.UTF-8 value.
 
 ## Build the Container
 
