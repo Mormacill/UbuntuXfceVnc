@@ -85,8 +85,6 @@ RUN x11vnc -storepasswd ${XPW} /root/passwd.pass
 
 ENV XPW=
 
-ENV LANGUAGE=de_DE
-
 EXPOSE ${XPT}/tcp
 
 
