@@ -1,3 +1,4 @@
+![Docker Image CI](https://github.com/Mormacill/UbuntuXfceVnc/workflows/Docker%20Image%20CI/badge.svg?branch=master)
 # UbuntuXfceVnc
 A Dockerfile for a vnc running ubuntu container with xfce
 
