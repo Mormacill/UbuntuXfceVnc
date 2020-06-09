@@ -10,10 +10,12 @@ ENV XPW=123456
 ENV LANGUAGE=en_US.UTF-8
 ENV LANGU=en
 
+#****************************************************************************************************************#
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y apt-utils && apt-get install -y locales
 
+#timezone
 ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN echo '${LANGUAGE} UTF-8' >> /etc/locale.gen
@@ -22,8 +24,10 @@ ENV DISPLAY=:0
 ENV LANG=${LANGUAGE}
 ENV LC_ALL=${LANGUAGE}
 
+#install x11vnc + dummy
 RUN apt-get -y upgrade && apt-get -y install xfce4 xserver-xorg-video-dummy x11vnc nano software-properties-common
 
+#config dummy
 RUN cd /usr/share/X11/xorg.conf.d/ && \
 echo 'Section "Monitor"' > xorg.conf && \
 echo '  Identifier "Monitor0"' >> xorg.conf && \
@@ -49,6 +53,7 @@ echo '    Modes "1920x1080_60.00"' >> xorg.conf && \
 echo '  EndSubSection' >> xorg.conf && \
 echo 'EndSection' >> xorg.conf
 
+#entrypoint.sh
 RUN cd /root/ && \
 echo 'rm /tmp/.X0-lock' > entrypoint.sh && \
 echo 'export DISPLAY=:0' >> entrypoint.sh && \
@@ -62,12 +67,15 @@ echo 'sleep 10' >> entrypoint.sh && \
 echo 'x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /root/passwd.pass -rfbport ${XPT} -shared &' >> entrypoint.sh && \
 chmod +x entrypoint.sh
 
+#purge term and install needed programms
 RUN apt-get -y purge gnome-terminal xterm && apt-get -y install gedit tilix firefox sudo wget bash-completion && apt-get -y autoremove
 
+#language support
 RUN apt-get -y install language-selector-gnome && apt-get -y install $(check-language-support -l ${LANGU}) && xdg-user-dirs-update --force
 
 RUN rm /etc/apt/apt.conf.d/docker-clean
 
+#bash completion
 RUN cd /etc/ && \
 echo ''  >> bash.bashrc && \
 echo '# enable bash completion in interactive shells'  >> bash.bashrc && \
@@ -81,6 +89,7 @@ echo 'fi' >> bash.bashrc
 
 RUN apt-get update
 
+#x11vnc pass-gen
 RUN x11vnc -storepasswd ${XPW} /root/passwd.pass
 
 ENV XPW=
