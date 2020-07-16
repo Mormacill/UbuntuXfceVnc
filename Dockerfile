@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM amd64/ubuntu:18.04
 
 # XPT: x11vnc port to use
 # XPW: x11vnc VNC password
