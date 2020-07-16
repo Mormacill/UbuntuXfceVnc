@@ -1,4 +1,4 @@
-FROM amd64/ubuntu:20.04
+FROM ubuntu:20.04
 
 # XPT: x11vnc port to use
 # XPW: x11vnc VNC password
