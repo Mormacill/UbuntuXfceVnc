@@ -68,7 +68,7 @@ echo 'x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /root/passwd
 chmod +x entrypoint.sh
 
 #purge term and install needed programms
-RUN apt-get -y purge xterm && apt-get -y install gedit firefox sudo wget bash-completion && apt-get -y autoremove
+RUN apt-get -y purge xterm && apt-get -y install gnome-terminal gedit firefox sudo wget bash-completion && apt-get -y autoremove
 
 #language support
 RUN apt-get -y install language-selector-gnome && apt-get -y install $(check-language-support -l ${LANGU}) && xdg-user-dirs-update --force
