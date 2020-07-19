@@ -8,8 +8,6 @@ First you´re able to change the ubuntu distribution. Do that by editing the Ver
 
 `FROM ubuntu:20.04`
 
-the Dockerfile is tested with 18.04 and 20.04. <br><br>
-
 Then set the Environment variables on top of the Dockerfile.
 
 `ENV XPT=5900`
