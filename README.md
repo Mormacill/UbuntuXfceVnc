@@ -6,9 +6,7 @@ A Dockerfile for a vnc running ubuntu container with xfce
 ## Previous Settings
 First you´re able to change the ubuntu distribution. Do that by editing the Version number in the first line:
 
-`FROM ubuntu:20.04`
-
-the Dockerfile is tested with 18.04 and 20.04. <br><br>
+`FROM ubuntu:16.04`
 
 Then set the Environment variables on top of the Dockerfile.
 
